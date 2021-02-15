@@ -1,0 +1,425 @@
+/**
+*  Publish Foundation theme
+*  Copyright (c) John Sundell 2019
+*  MIT license, see LICENSE file for details
+*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #fff;
+    color: #000;
+    font-family: Helvetica, Arial;
+    text-align: center;
+}
+
+.wrapper {
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 40px;
+    text-align: left;
+}
+
+header {
+    background-color: #eee;
+}
+
+header .wrapper {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    text-align: center;
+}
+
+header a {
+    text-decoration: none;
+}
+
+header .site-name {
+    font-size: 1.5em;
+    color: #000;
+    font-weight: bold;
+}
+
+nav {
+    margin-top: 20px;
+}
+
+nav li {
+    display: inline-block;
+    margin: 0 7px;
+    line-height: 1.5em;
+}
+
+nav li a.selected {
+    text-decoration: underline;
+}
+
+h1 {
+    margin-bottom: 20px;
+    font-size: 2em;
+}
+
+h2 {
+    margin: 20px 0;
+}
+
+p {
+    margin-bottom: 10px;
+}
+
+a {
+    color: inherit;
+}
+
+.description {
+    margin-bottom: 40px;
+}
+
+.item-list > li {
+    display: block;
+    padding: 20px;
+    border-radius: 20px;
+    background-color: #eee;
+    margin-bottom: 20px;
+}
+
+.item-list > li:last-child {
+    margin-bottom: 0;
+}
+
+.item-list h1 {
+    margin-bottom: 15px;
+    font-size: 1.3em;
+}
+
+.item-list p {
+    margin-bottom: 0;
+}
+
+.tag-list {
+    margin-bottom: 15px;
+}
+
+.tag-list li,
+.tag {
+    display: inline-block;
+    background-color: #000;
+    color: #ddd;
+    padding: 4px 6px;
+    border-radius: 5px;
+    margin-right: 5px;
+}
+
+.tag-list a,
+.tag a {
+    text-decoration: none;
+}
+
+.item-page .tag-list {
+    display: inline-block;
+}
+
+.content {
+    margin-bottom: 40px;
+}
+
+.browse-all {
+    display: block;
+    margin-bottom: 30px;
+}
+
+.all-tags li {
+    font-size: 1.4em;
+    margin-right: 10px;
+    padding: 6px 10px;
+}
+
+footer {
+    color: #8a8a8a;
+    text-align:center;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    border-top: 1px var(--healthnote-green) solid;
+    padding: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 10px;
+}
+
+footer p{
+    margin: 5px;
+    text-align: center;
+}
+
+
+footer li{
+    display: inline-block;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #222;
+    }
+
+    body,
+    header .site-name {
+        color: #ddd;
+    }
+
+    .item-list > li {
+        background-color: #333;
+    }
+
+    header {
+        background-color: #000;
+    }
+}
+
+@media(max-width: 600px) {
+    .wrapper {
+        padding: 40px 20px;
+    }
+}
+
+re {
+    margin-bottom: 1.5em;
+    background-color: #1a1a1a;
+    padding: 16px 0;
+    border-radius: 16px;
+}
+
+pre code {
+    color: #A9BCBC;
+}
+
+.preprocessing {
+    color: #B68A00;
+}
+
+.comment {
+    color: #6B8A94;
+}
+
+.number {
+    color: #DB6F57;
+}
+
+.call {
+    color: #348FE5;
+}
+
+.property {
+    color: #21AB9D;
+}
+
+.keyword {
+    color: #E83B8E;
+}
+
+.dotAccess {
+    color: #92B300;
+}
+
+.type {
+    color: #8281CA;
+}
+
+.string {
+    color: #FA641E;
+} code .comment {
+    color: #6b8a94;
+}
+
+pre code .dotAccess {
+    color: #92b300;
+}
+
+pre code .preprocessing {
+    color: #b68a00;
+}
+
+
+/* item-nav*/
+.item-navigator{
+    font-size: 13px;
+    /* white-space: nowrap; */
+    text-overflow: ellipsis;
+    height: 15px;
+    
+}
+
+.item-navigator a{
+    text-decoration: none;
+}
+
+.item-navigator table{
+    width: 100%;
+}
+
+.item-navigator td{
+    width: 50%;
+    text-overflow: ellipsis;
+    border:0px solid #0094ff;
+    height: 15px;
+    vertical-align: top;
+}
+
+.item-navigator img{
+    width: 13px;
+}
+.item-navigator .previous-item{
+    /* float: left; */
+    background-position-x: left;
+}
+
+.item-navigator .next-item{
+    /* float: right; */
+    /* display: block; */
+    background-position-x: right;
+    text-align: right;
+}
+
+.site-search-form {
+    padding: 5px;
+    border: 1px solid #CCC;
+    border-radius: 10px;
+    display: block;
+    margin-bottom:40px;
+    margin-top: 20px;
+    max-width:500px;
+    min-width:200px;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.st-search-input{
+    width:100%;
+    height: 30px;
+    font-size: 16px;
+    border: none;
+    color: #404040;
+    outline:none;
+    background-image: url("/images/search.svg");
+    background-repeat: no-repeat;
+    background-position: left;
+    background-size: 24px 24px;
+    padding-left: 30px;
+}
+
+.st-search-input::-ms-clear{
+    display: none;
+}
+
+.st-search-input:valid + .clearSearchInput{
+    display: inline;
+}
+
+.local-search-input-cls {
+  width: 400px;
+  margin: 10px 0;
+  padding: 8px 12px;
+  border-radius: 4px;
+  border: 1px solid #CCC;
+  color: #666;
+  font-size: 14px;
+  color: #404040;
+}
+
+.local-search-result-cls {
+    margin-top: 30px;
+    color: #404040;
+    min-height: 400px;
+}
+
+.local-search-result-cls  .local-search-empty {
+    color: #888;
+    line-height: 44px;
+    text-align: center;
+    display: block;
+    font-size: 16px;
+    font-weight: normal;
+  }
+
+  .local-search-result-cls ul {
+    min-height: 0;
+    height: auto;
+    overflow-y: auto;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .local-search-result-cls li {
+      text-align: left;
+      padding-bottom: 20px;
+      margin-bottom: 20px;
+      line-height: 30px;
+      font-weight: normal;
+      margin-left: auto;
+      margin-right: auto;
+}
+
+.local-search-result-cls li:last-child{
+    border-bottom: none;
+}
+
+.local-search-result-cls a {
+        margin-top: 20px;
+        font-size: 18px;
+        font-weight: normal;
+        color: var(--item-title-color);
+}
+
+.local-search-result-cls a:hover {
+    color: var(--item-title-hover-color);
+}
+
+.local-search-result-cls  p {
+        margin-top: 10px;
+        font-size: 14px;
+        max-height: 124px;
+        overflow: hidden;
+      }
+
+.local-search-result-cls  em.search-keyword {
+        color: #ff502c;
+        background-color: #fff5f5;
+      }
+    
+
+
+.local-search-plugin {
+  .local-search-input-cls {
+    opacity: 0.6;
+    width: 160px;
+    transition: all 0.3s;
+    &:hover {
+      opacity: 1;
+      width: 200px;
+      transition: all 0.3s;
+    }
+  }
+  .icon {
+    position: relative;
+    left: -30px;
+    color: #999;
+    cursor: pointer;
+  }
+}
+
+.clearSearchInput {
+    display: none; 
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    margin: 9px 0 0 -20px;  
+    background: url("/images/clear.svg") no-repeat;
+    background-size: 12px 12px;
+    outline: none; 
+}
