@@ -13,8 +13,14 @@
 body {
     background: #fff;
     color: #000;
-    font-family: Helvetica, Arial;
+    /*font-family: Helvetica, Arial;*/
     text-align: center;
+    font-family: -apple-system,BlinkMacSystemFont,Helvetica Neue,PingFang SC,Microsoft YaHei,Source Han Sans SC,Noto Sans CJK SC,WenQuanYi Micro Hei,sans-serif;
+    line-height: 1.22857;
+    font-size: 15px;
+    font-feature-settings: "tnum";
+    font-variant: tabular-nums;
+    /* letter-spacing:2px; */
 }
 
 .wrapper {
@@ -70,6 +76,7 @@ h2 {
 
 p {
     margin-bottom: 10px;
+    line-height: 1.5em;
 }
 
 a {
@@ -245,6 +252,35 @@ pre code .preprocessing {
     color: #b68a00;
 }
 
+/* code */
+
+.content pre {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.content pre code {
+    display: block;
+    background-color: #272727;
+    padding: 15px 15px 15px 15px;
+    border-radius: 8px;
+    color: #a9bcbc;
+    line-height: 1.4em;
+    font-size: 0.9em;
+    overflow-x: auto;
+    white-space: pre;
+    /*font-family: SF Mono,Consolas,Courier New,monospace,Helvetica, Arial;*/
+    -webkit-overflow-scrolling: touch;
+}
+
+.content pre code .highlight {
+    display: inline-block;
+    padding: 0 4px 2px 4px;
+    border: 1px solid #546AFF;
+    border-radius: 5px;
+    background-color: #1A1721;
+    margin-left: -5px;
+}
 
 /* item-nav*/
 .item-navigator{
@@ -422,4 +458,17 @@ pre code .preprocessing {
     background: url("/images/clear.svg") no-repeat;
     background-size: 12px 12px;
     outline: none; 
+}
+
+
+/*内联代码*/
+article p code, article li code, .discover .content code {
+    background-color: #272727;
+    color: #ff3258;
+    display: inline-block;
+    padding: 0 5px;
+    border-radius: 8px;
+    font-size: 0.9em;
+    margin: 1px;
+    line-break: anywhere;
 }
