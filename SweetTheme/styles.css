@@ -74,14 +74,37 @@ h2 {
     margin: 20px 0;
 }
 
+h3 {
+    margin: 20px 0;
+}
+
+h4 {
+    margin: 20px 0;
+}
+
+h5 {
+    margin: 20px 0;
+}
+
+h6 {
+    margin: 20px 0;
+}
+
 p {
     margin-bottom: 10px;
     line-height: 1.5em;
 }
 
 a {
-    color: inherit;
+    color: #ff4e32;
+    text-decoration: none;
 }
+
+/* 设置鼠标悬浮在链接的颜色
+a:hover {
+   color: var(--item-title-hover-color);
+}
+ */
 
 .description {
     margin-bottom: 40px;
@@ -135,6 +158,16 @@ a {
     margin-bottom: 40px;
 }
 
+/*设置图片样式*/
+.content img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    max-width : 100%
+}
+
 .browse-all {
     display: block;
     margin-bottom: 30px;
@@ -186,6 +219,14 @@ footer li{
 
     header {
         background-color: #000;
+    }
+    
+    .st-search-input{
+        color: white;
+    }
+    
+    .content code {
+        background-color: #272727 !important;
     }
 }
 
@@ -340,13 +381,14 @@ pre code .preprocessing {
     height: 30px;
     font-size: 16px;
     border: none;
-    color: #404040;
+    color: black;
     outline:none;
     background-image: url("/images/search.svg");
     background-repeat: no-repeat;
     background-position: left;
     background-size: 24px 24px;
     padding-left: 30px;
+    background-color:transparent;
 }
 
 .st-search-input::-ms-clear{
@@ -462,13 +504,44 @@ pre code .preprocessing {
 
 
 /*内联代码*/
-article p code, article li code, .discover .content code {
-    background-color: #272727;
+.content code {
+    background-color: #ebebeb;
     color: #ff3258;
     display: inline-block;
     padding: 0 5px;
     border-radius: 8px;
     font-size: 0.9em;
     margin: 1px;
-    line-break: anywhere;
+}
+
+.variant-0 {background-color: #66293c;}
+.variant-1 {background-color: #913e37;}
+.variant-2 {background-color: #ca7618;}
+.variant-3 {background-color: #a38138;}
+.variant-4 {background-color: #2f7176;}
+.variant-5 {background-color: #246089;}
+.variant-6 {background-color: #498840;}
+.variant-7 {background-color: #484781;}
+
+/* Colors */
+
+:root {
+  --header-background-color-light : #009688;
+  --header-background-color-dark : #009688;
+  --footer-background-color-light : #009688;
+  --footer-background-color-dark : #000;
+  --header-bottom-line-color-light: ;
+  --header-bottom-line-color-dark: ;
+  --content-background-color-light:#eee;
+  --content-background-color-dark:#333;
+  --index-item-more-color-light: #8a8a8a;
+  --index-item-more-color-dark: #7a7a7a;
+  --item-title-color: #ff8000;
+  --item-title-hover-color: #ff3300;
+  --section-header-title-color-light:#333;
+  --section-header-title-color-dark:#bbb;
+  --shadow-color:#2a2a2a;
+  --healthnote-green:#01675D;
+  --index-list-blockquote-dark:black;
+  --index-list-blockquote-light:white;
 }

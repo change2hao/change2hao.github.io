@@ -1,0 +1,29 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/><meta name="og:site_name" content="Blog"/><link rel="canonical" href="https://your-website-url.com/posts/website-use-publish"/><meta name="twitter:url" content="https://your-website-url.com/posts/website-use-publish"/><meta name="og:url" content="https://your-website-url.com/posts/website-use-publish"/><title>使用Publish搭建静态博客 | Blog</title><meta name="twitter:title" content="使用Publish搭建静态博客 | Blog"/><meta name="og:title" content="使用Publish搭建静态博客 | Blog"/><meta name="description" content="现在静态网站生成框架百花齐放，笔者先后尝试过JekyII hexo hugo vuepress，而现在我开始使用一个全新框架 Publish，当然这次不是为了一时兴起，是什么原因让我转头Publish怀抱，本篇文章给你答案."/><meta name="twitter:description" content="现在静态网站生成框架百花齐放，笔者先后尝试过JekyII hexo hugo vuepress，而现在我开始使用一个全新框架 Publish，当然这次不是为了一时兴起，是什么原因让我转头Publish怀抱，本篇文章给你答案."/><meta name="og:description" content="现在静态网站生成框架百花齐放，笔者先后尝试过JekyII hexo hugo vuepress，而现在我开始使用一个全新框架 Publish，当然这次不是为了一时兴起，是什么原因让我转头Publish怀抱，本篇文章给你答案."/><meta name="twitter:card" content="summary"/><link rel="stylesheet" href="/styles.css" type="text/css"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><link rel="shortcut icon" href="/images/favicon.png" type="image/png"/><link rel="alternate" href="/feed.rss" type="application/rss+xml" title="Subscribe to Blog"/></head><body class="item-page"><header><div class="wrapper"><a class="site-name" href="/">Blog</a></div></header><div class="wrapper"><article><div class="content"><h1>使用Publish搭建静态博客</h1><h2>Publish 是什么？</h2><p><a href="https://github.com/JohnSundell/Publish">Publish</a>是一款静态网站生成器。它使用Swift构建整个网站，并支持主题、插件和其他大量的定制选项。</p><h2>为什么要使用 Publish</h2><p>接触到Publish是因为它的作者John Sundell，John Sundell 是国外Swift领域的技术大牛，发表了大量高质量的技术文章，笔者也从中受益匪浅，他的文章发布在 <a href="https://www.swiftbysundell.com/">Swift by Sundell</a>。这个站点正是使用他亲手开发的Publish框架来构建的。</p><p>Publish最吸引我的地方是整个框架全部由Swift进行构建，Swift语言是我目前主力开发语言，所以Publish让我感到非常亲切，对站点的定制化需求也会更得心应手，这种完全自己掌控的感觉太好了。</p><h2>如何使用 Publish</h2><h3>安装</h3><p>同大量的其他静态网站生成器一样，Publish提供了CLI。通过命令行快速完成创建模板、内容更新、远程发布等一系列操作 安装方式可以通过 brew 安装也可以通过源代码安装，这里使用 brew 安装 <code>brew install publish</code></p><h3>创建站点</h3><p>创建一个 Blog 站点</p><pre><code>mkdir blog
+cd blog
+publish new
+</code></pre><p>Publish 会自动创建项目模版，结构如下：</p><pre><code>|-- blog
+|   |-- <span class="type">Content</span>
+|           |–– posts
+|                 |–– first-post.<span class="property">md</span>
+|                 |–– index.<span class="property">md</span>
+|           |–– index.<span class="property">md</span>
+|   |-- <span class="type">Resources</span>
+|   |-- <span class="type">Sources</span>
+|           |–– blog
+|                  |–– main.<span class="property">swift</span>
+</code></pre><p>Content目录存放markdown源文件 Resource目录存放资源文件，比如css 图片等 Source目录存放构建网站的源代码文件，比如main.swift里定义了站点的框架结构、主题选择以及站点生成的各种工作流，当然可以在这个目录里做各种扩展操作，比如自定义一个插件、主题等</p><h3>运行和调试</h3><p>Swift是编译型语言，代码每次修改之后，都需在本机编译并运行</p><pre><code>publish run
+</code></pre><p>第一次运行，Publish会自动从Github上获取依赖的三方库，然后会看到如下信息</p><pre><code>publish run
+...
+<span class="type">Publishing</span> blog (<span class="number">6</span> steps)
+[<span class="number">1</span>/<span class="number">6</span>] <span class="type">Copy</span> '<span class="type">Resources</span>' files
+[<span class="number">2</span>/<span class="number">6</span>] <span class="type">Add Markdown</span> files from '<span class="type">Content</span>' folder
+[<span class="number">3</span>/<span class="number">6</span>] <span class="type">Sort</span> items
+[<span class="number">4</span>/<span class="number">6</span>] <span class="type">Generate HTML</span>
+[<span class="number">5</span>/<span class="number">6</span>] <span class="type">Generate RSS</span> feed
+[<span class="number">6</span>/<span class="number">6</span>] <span class="type">Generate</span> site map
+✅ <span class="type">Successfully</span> published blog
+🌍 <span class="type">Starting</span> web server at http://localhost:<span class="number">8000</span>
+
+<span class="type">Press ENTER</span> to stop the server and exit
+</code></pre><p>用浏览器访问 http://localhost:8000 就可以看到新站点了，网站的所有内容放置在了Output目录。 如果要发布到 github page，只需要添加 <code>.deploy(using: .gitHub("username/username.github.io"))</code> <em>username为github的用户名</em>，然后执行</p><pre><code>publish deploy
+</code></pre><p>便可将内容发布上去，这个框架的介绍和使用就说到这里，关于Publish中涉及的概念以及如何定制化后面会专门讲解</p><h3>感想</h3><p>文章最后说说笔者的一些感想吧，我从2012年第一次用 JekyII 来搭建的我的博客，转眼间九年过去了，这期间我更换过很多框架 从<code>JekyII</code> <code>hexo</code> <code>hugo</code> <code>vuepress</code> 到现在的 <code>Publish</code>，爱折腾是程序猿的天性，但是搭建站点只是提供一个写作平台，持续输出有价值的内容，能够帮助影响到他人，这才是最重要的，我们一起共勉。</p></div><span>Tagged with: </span><ul class="tag-list"><li><a href="/tags/tutorial">tutorial</a></li><li><a href="/tags/publish">publish</a></li></ul></article><div class="item-navigator"><table><tr><td class="previous-item"><a href="/posts/swift-property-wrapper">👈 Swift语言特性之-PropertyWrapper</a></td><td class="next-item"><a href="/posts/website-use-hugo">使用 Hugo + Travis CI + Github Pages 搭建静态博客 👉</a></td></tr></table></div><footer><p>Generated using <a href="https://github.com/johnsundell/publish">Publish</a></p><p><a href="/feed.rss">RSS feed</a></p></footer></div></body></html>
