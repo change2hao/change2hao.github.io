@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content"><channel><title>Blog</title><description></description><link>https://your-website-url.com</link><language>en</language><lastBuildDate>Thu, 18 Feb 2021 11:42:30 +0800</lastBuildDate><pubDate>Thu, 18 Feb 2021 11:42:30 +0800</pubDate><ttl>250</ttl><atom:link href="https://your-website-url.com/feed.rss" rel="self" type="application/rss+xml"/><item><guid isPermaLink="true">https://your-website-url.com/posts/swift-property-wrapper</guid><title>Swift语言特性之-PropertyWrapper</title><description>什么是 PropertyWrapper？PropertyWrapper能给我们的代码带来哪些好处呢，希望看完之后能带给你答案</description><link>https://your-website-url.com/posts/swift-property-wrapper</link><pubDate>Wed, 13 Jan 2021 22:13:00 +0800</pubDate><content:encoded><![CDATA[<h1>Swift语言特性之-PropertyWrapper</h1><p><code>PropertyWrapper</code>是<code>Swift5.1</code>版本引入的新特性，顾名思义，就是属性的包装器。为什么要包装属性呢？因为有时候需要对属性进行逻辑处理</p><h2>案例</h2><p>App的设置选项里面通常有语言设置、主题设置、字体设置等，所以通常我们会定义一个类来专门进行管理，同时为了保证每次启动App都能记录之前的设置，我们通常会通过<code>UserDefaults</code>来进行持久化处理，代码如下</p><pre><code><span class="keyword">let</span> kSettingsLanguage = <span class="string">"kSettingsLanguage"</span>
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content"><channel><title>Blog</title><description></description><link>https://your-website-url.com</link><language>en</language><lastBuildDate>Fri, 19 Feb 2021 10:31:45 +0800</lastBuildDate><pubDate>Fri, 19 Feb 2021 10:31:45 +0800</pubDate><ttl>250</ttl><atom:link href="https://your-website-url.com/feed.rss" rel="self" type="application/rss+xml"/><item><guid isPermaLink="true">https://your-website-url.com/posts/swift-property-wrapper</guid><title>Swift语言特性之-PropertyWrapper</title><description>什么是 PropertyWrapper？PropertyWrapper能给我们的代码带来哪些好处呢，希望看完之后能带给你答案</description><link>https://your-website-url.com/posts/swift-property-wrapper</link><pubDate>Wed, 13 Jan 2021 22:13:00 +0800</pubDate><content:encoded><![CDATA[<h1>Swift语言特性之-PropertyWrapper</h1><p><code>PropertyWrapper</code>是<code>Swift5.1</code>版本引入的新特性，顾名思义，就是属性的包装器。为什么要包装属性呢？因为有时候需要对属性进行逻辑处理</p><h2>案例</h2><p>App的设置选项里面通常有语言设置、主题设置、字体设置等，所以通常我们会定义一个类来专门进行管理，同时为了保证每次启动App都能记录之前的设置，我们通常会通过<code>UserDefaults</code>来进行持久化处理，代码如下</p><pre><code><span class="keyword">let</span> kSettingsLanguage = <span class="string">"kSettingsLanguage"</span>
 <span class="keyword">let</span> kSettingsFontsize = <span class="string">"kSettingsFontsize"</span>
 <span class="keyword">let</span> kSettingsTheme = <span class="string">"kSettingsTheme"</span>
 
@@ -174,7 +174,48 @@ git push -u origin master
 git add .
 git commit -m <span class="string">"xxx"</span>
 git push -u origin master
-</code></pre><p>这就可以了，博客的构建和部署直接交给了 Travis CI 来完成，是不是很爽？就到这里，希望对你有帮助</p>]]></content:encoded></item><item><guid isPermaLink="true">https://your-website-url.com/posts/gitlab-tutorial</guid><title>使用 gitlab 搭建代码托管平台</title><description>开发团队中如何更好的进行代码管理和协作，如何免费搭建一台代码托管平台，这篇文章会给你答案</description><link>https://your-website-url.com/posts/gitlab-tutorial</link><pubDate>Thu, 5 Mar 2015 23:03:00 +0800</pubDate><content:encoded><![CDATA[<h1>使用 gitlab 搭建代码托管平台</h1><p><a href="https://github.com">github</a>是目前最为流行的代码托管平台，很多著名的开源项目都在github上进行托管。但github只能免费托管公有项目，如果要托管私有项目就要缴纳不菲的费用。而且github服务器在国外，很难保证网络的稳定。为了保证代码的安全和可控，公司更倾向于自建代码服务器。</p><h2>gitlab是什么</h2><blockquote><p>Version Control on your Server like GitHub but Open Source</p></blockquote><p>一句话，gitlab就是github的开源实现。它的特点如下：</p><ul><li>git仓库管理，代码审查，问题追踪，活动信息，维基和持续集成。</li><li>容纳25000+的用户群同时在一台服务器上。LDAP/AD组同步和日志审计。</li><li>社区驱动，700+贡献者，检查完善代码，方便集成。</li><li>如果不想手动搭建gitlab，可以看<a href="https://about.gitlab.com/pricing/#gitlab-com">这里</a></li></ul><h2>如何搭建</h2><h3>部署环境ubuntu14.04 server版操作系统</h3><p>我们公司主机CPU是32位的，所以下载32位的ubuntu镜像。下载地址在<a href="http://www.ubuntu.org.cn/download/server">这里</a>，安装过程就不说了，我是用光驱引导安装的，当然也有其他方法。</p><h3>安装openssh-server</h3><p>为什么要安装它呢？<code>openssh-server</code>主要用于其他终端远程连接服务器。默认ubuntu14.04系统只有<code>openssh-client</code>，而<code>openssh-server</code>需要自己安装。怎么看系统有没有安装ssh呢，通过如下命令：<code>dpkg --list|grep ssh</code>，如果有的话，控制台会列出<code>openssh-client</code>和<code>openssh-server</code>，说明已经安装了，如果没有<code>openssh-server</code>，需要通过如下命令安装<code>sudo apt-get install openssh-server</code>，结果在安装这个的时候报错</p><pre><code><span class="type">Reading</span> package lists... <span class="type">Done
+</code></pre><p>这就可以了，博客的构建和部署直接交给了 Travis CI 来完成，是不是很爽？就到这里，希望对你有帮助</p>]]></content:encoded></item><item><guid isPermaLink="true">https://your-website-url.com/posts/swift-keywords-mutating</guid><title>Swift 关键字--mutating</title><description>今天聊一下`mutating`关键字，什么情况下用这个关键字你清楚吗？</description><link>https://your-website-url.com/posts/swift-keywords-mutating</link><pubDate>Wed, 10 Jan 2018 22:13:00 +0800</pubDate><content:encoded><![CDATA[<h1>Swift 关键字--mutating</h1><h2>引出问题</h2><p>使用 class 来定义一个计数器</p><pre><code><span class="keyword">class</span> Counter {
+    <span class="keyword">var</span> count: <span class="type">Int</span>    
+    <span class="keyword">init</span>(count: <span class="type">Int</span> = <span class="number">0</span>) {
+        <span class="keyword">self</span>.<span class="property">count</span> = count
+    }
+    
+    <span class="keyword">func</span> increment() {
+        count += <span class="number">1</span>
+    }
+}
+</code></pre><p>代码很简单，那改成 struct 呢？</p><pre><code><span class="keyword">class</span> Counter {
+    <span class="keyword">var</span> count: <span class="type">Int</span>    
+    <span class="keyword">init</span>(count: <span class="type">Int</span> = <span class="number">0</span>) {
+        <span class="keyword">self</span>.<span class="property">count</span> = count
+    }
+    
+    <span class="comment">// ❌error:Left side of mutating operator isn't mutable: 'self' is immutable</span>
+    <span class="keyword">func</span> increment() {
+        count += <span class="number">1</span>
+    }
+}
+</code></pre><p>直接报错，因为在Swift中，struct和enum是值类型(value type)，class是引用类型(reference type)。对于值类型，默认情况下实例方法中是不可以修改其属性的</p><h2>解决办法</h2><p>此时swift关键字mutating就可以发挥作用了，代码如下</p><pre><code><span class="keyword">class</span> Counter {
+    <span class="keyword">var</span> count: <span class="type">Int</span>    
+    <span class="keyword">init</span>(count: <span class="type">Int</span> = <span class="number">0</span>) {
+        <span class="keyword">self</span>.<span class="property">count</span> = count
+    }
+    
+    <span class="comment">// 使用 mutating 关键字，ok</span>
+    <span class="keyword">mutating func</span> increment() {
+        count += <span class="number">1</span>
+    }
+}
+</code></pre><h2>应用案例</h2><p>除此之外，还可以列举一些常用场景比如：</p><h4>给 Array 扩展一个 remove(:) 方法，此时就需要用 mutating</h4><pre><code><span class="keyword">extension</span> <span class="type">Array</span> <span class="keyword">where</span> <span class="type">Element</span>: <span class="type">Equatable</span> {
+    
+    <span class="comment">// Remove first collection element that is equal to the given `object`:</span>
+    <span class="keyword">mutating func</span> remove(<span class="keyword">_</span> object: <span class="type">Element</span>) {
+        <span class="keyword">if let</span> index = <span class="call">firstIndex</span>(of: object) {
+            <span class="call">remove</span>(at: index)
+        }
+    }
+}
+</code></pre>]]></content:encoded></item><item><guid isPermaLink="true">https://your-website-url.com/posts/gitlab-tutorial</guid><title>使用 gitlab 搭建代码托管平台</title><description>开发团队中如何更好的进行代码管理和协作，如何免费搭建一台代码托管平台，这篇文章会给你答案</description><link>https://your-website-url.com/posts/gitlab-tutorial</link><pubDate>Thu, 5 Mar 2015 23:03:00 +0800</pubDate><content:encoded><![CDATA[<h1>使用 gitlab 搭建代码托管平台</h1><p><a href="https://github.com">github</a>是目前最为流行的代码托管平台，很多著名的开源项目都在github上进行托管。但github只能免费托管公有项目，如果要托管私有项目就要缴纳不菲的费用。而且github服务器在国外，很难保证网络的稳定。为了保证代码的安全和可控，公司更倾向于自建代码服务器。</p><h2>gitlab是什么</h2><blockquote><p>Version Control on your Server like GitHub but Open Source</p></blockquote><p>一句话，gitlab就是github的开源实现。它的特点如下：</p><ul><li>git仓库管理，代码审查，问题追踪，活动信息，维基和持续集成。</li><li>容纳25000+的用户群同时在一台服务器上。LDAP/AD组同步和日志审计。</li><li>社区驱动，700+贡献者，检查完善代码，方便集成。</li><li>如果不想手动搭建gitlab，可以看<a href="https://about.gitlab.com/pricing/#gitlab-com">这里</a></li></ul><h2>如何搭建</h2><h3>部署环境ubuntu14.04 server版操作系统</h3><p>我们公司主机CPU是32位的，所以下载32位的ubuntu镜像。下载地址在<a href="http://www.ubuntu.org.cn/download/server">这里</a>，安装过程就不说了，我是用光驱引导安装的，当然也有其他方法。</p><h3>安装openssh-server</h3><p>为什么要安装它呢？<code>openssh-server</code>主要用于其他终端远程连接服务器。默认ubuntu14.04系统只有<code>openssh-client</code>，而<code>openssh-server</code>需要自己安装。怎么看系统有没有安装ssh呢，通过如下命令：<code>dpkg --list|grep ssh</code>，如果有的话，控制台会列出<code>openssh-client</code>和<code>openssh-server</code>，说明已经安装了，如果没有<code>openssh-server</code>，需要通过如下命令安装<code>sudo apt-get install openssh-server</code>，结果在安装这个的时候报错</p><pre><code><span class="type">Reading</span> package lists... <span class="type">Done
 Building</span> dependency tree
 <span class="type">Reading</span> state information... <span class="type">Done
 Package</span> openssh-server <span class="keyword">is</span> not available,but <span class="keyword">is</span> referred to by another package. <span class="type">This</span> may mean that the package <span class="keyword">is</span> missing, has been obsoleted, is only available from another source
