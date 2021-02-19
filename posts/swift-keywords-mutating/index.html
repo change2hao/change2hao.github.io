@@ -9,12 +9,12 @@
     <span class="keyword">init</span>(count: <span class="type">Int</span> = <span class="number">0</span>) {
         <span class="keyword">self</span>.<span class="property">count</span> = count
     }
-    
+    <span class="comment">//计数加1的方法</span>
     <span class="keyword">func</span> increment() {
         count += <span class="number">1</span>
     }
 }
-</code></pre><p>代码很简单，那改成 struct 呢？</p><pre><code><span class="keyword">class</span> Counter {
+</code></pre><p>代码很简单，那改成 struct 呢？</p><pre><code><span class="keyword">struct</span> Counter {
     <span class="keyword">var</span> count: <span class="type">Int</span>    
     <span class="keyword">init</span>(count: <span class="type">Int</span> = <span class="number">0</span>) {
         <span class="keyword">self</span>.<span class="property">count</span> = count
@@ -25,7 +25,7 @@
         count += <span class="number">1</span>
     }
 }
-</code></pre><p>直接报错，因为在Swift中，struct和enum是值类型(value type)，class是引用类型(reference type)。对于值类型，默认情况下实例方法中是不可以修改其属性的</p><h2>解决办法</h2><p>此时swift关键字mutating就可以发挥作用了，代码如下</p><pre><code><span class="keyword">class</span> Counter {
+</code></pre><p>直接报错，因为在Swift中，struct和enum是值类型(value type)，class是引用类型(reference type)。对于值类型，默认情况下实例方法中是不可以修改其属性的</p><h2>解决办法</h2><p>此时swift关键字<code>mutating</code>就可以发挥作用了，代码如下</p><pre><code><span class="keyword">struct</span> Counter {
     <span class="keyword">var</span> count: <span class="type">Int</span>    
     <span class="keyword">init</span>(count: <span class="type">Int</span> = <span class="number">0</span>) {
         <span class="keyword">self</span>.<span class="property">count</span> = count
@@ -36,7 +36,7 @@
         count += <span class="number">1</span>
     }
 }
-</code></pre><h2>应用案例</h2><p>除此之外，还可以列举一些常用场景比如：</p><h4>给 Array 扩展一个 remove(:) 方法，此时就需要用 mutating</h4><pre><code><span class="keyword">extension</span> <span class="type">Array</span> <span class="keyword">where</span> <span class="type">Element</span>: <span class="type">Equatable</span> {
+</code></pre><h2>应用案例</h2><p>除此之外，还可以列举一些常用场景比如：</p><h4>给 Array 扩展一个 remove(_:) 方法，此时就需要用 mutating</h4><pre><code><span class="keyword">extension</span> <span class="type">Array</span> <span class="keyword">where</span> <span class="type">Element</span>: <span class="type">Equatable</span> {
     
     <span class="comment">// Remove first collection element that is equal to the given `object`:</span>
     <span class="keyword">mutating func</span> remove(<span class="keyword">_</span> object: <span class="type">Element</span>) {
